@@ -10,9 +10,15 @@ using namespace std;
 /*
   $ clang++ -std=c++11 -stdlib=libc++ solutions-range-sort-27times.cpp 
   (No optimization option)
-  - real0m0.311s
-  - user0m0.237s
-  - sys0m0.024s
+  - real 0m0.311s
+  - user 0m0.237s
+  - sys  0m0.024s
+
+  $ clang++ -std=c++11 -stdlib=libc++ -Os solutions-range-sort-27times.cpp
+  (-Os optimiztion)
+  - real 0m0.164s
+  - user 0m0.131s
+  - sys  0m0.014s
 */
 
 vector<int> read_nums(const string &filename) {
