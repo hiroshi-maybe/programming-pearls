@@ -8,13 +8,13 @@
 using namespace std;
 
 /*
-  $ clang++ -std=c++11 -stdlib=libc++ solutions-range-sort-27times.cpp 
+  $ clang++ -std=c++11 -stdlib=libc++ solutions-multipass-sort.cpp
   (No optimization option)
   - real 0m0.311s
   - user 0m0.237s
   - sys  0m0.024s
 
-  $ clang++ -std=c++11 -stdlib=libc++ -Os solutions-range-sort-27times.cpp
+  $ clang++ -std=c++11 -stdlib=libc++ -Os solutions-multipass-sort.cpp
   (-Os optimiztion)
   - real 0m0.164s
   - user 0m0.131s
