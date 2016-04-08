@@ -9,16 +9,16 @@
 using namespace std;
 
 /*
-  $ clang++ -std=c++11 -stdlib=libc++ solutions-range-sort-27times.cpp 
+  $ clang++ -std=c++11 -stdlib=libc++ solutions-merge-sort.cpp 
   (No optimization option)
-  - real 0m0.311s
-  - user 0m0.237s
-  - sys  0m0.024s
+  - real 0m0.077s
+  - user 0m0.044s
+  - sys  0m0.008s
 
-  $ clang++ -std=c++11 -stdlib=libc++ -Os solutions-range-sort-27times.cpp
+  $ clang++ -std=c++11 -stdlib=libc++ -Os solutions-merge-sort.cpp
   (-Os optimiztion)
-  - real 0m0.164s
-  - user 0m0.131s
+  - real 0m0.087s
+  - user 0m0.034s
   - sys  0m0.014s
 */
 
@@ -130,10 +130,7 @@ void merge(int pairid) {
   rename(tmpfile.c_str(), tmp_filename(pairid).c_str());
 }
 
-int main () {
-  vector<int> inputNums = read_nums("input.dat");
-  int chunkNum = create_chunks(inputNums);
-
+int merge_chunks(int chunkNum) {
   int pairid=0;
   for(; pairid<chunkNum/2; ++pairid) {
     merge(pairid);
@@ -143,26 +140,19 @@ int main () {
     int destfileid = pairid;
     rename(tmp_filename(orgfileid).c_str(), tmp_filename(destfileid).c_str());
   }
-  
-  /*
-  for(int i=0; i<MAX_RANGE/MAX_STORAGE_SIZE; ++i) {
-    int min = (i * MAX_STORAGE_SIZE) + 1;
-    int max = min + MAX_STORAGE_SIZE;
 
-    int stidx = 0;
-    for(auto n: myvector) {
-      if (n >= min && n < max) {
-	storage[stidx] = n;
-	stidx++;
-      }
-    }
+  return (chunkNum / 2) + (chunkNum % 2);
+}
 
-    sort(storage, storage + stidx);
+int main () {
+  vector<int> inputNums = read_nums("input.dat");
+  int chunkNum = create_chunks(inputNums);
 
-    for(int j=0; j<stidx; ++j) {
-      std::cout << storage[j] << '\n';
-    }
-    }*/
+  while(chunkNum > 1) {
+    chunkNum = merge_chunks(chunkNum);
+  }
+
+  rename(tmp_filename(chunkNum-1).c_str(), "output.dat");
   
   return 0;
 }
