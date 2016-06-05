@@ -11,15 +11,15 @@ using namespace std;
 /*
   $ clang++ -std=c++11 -stdlib=libc++ solution-reverse.cpp
   (No optimization option)
-  - real   0m1.027s
-  - user   0m0.934s
-  - sys    0m0.029s
+  - real   0m1.249s
+  - user   0m1.118s
+  - sys    0m0.052s
 
   $ clang++ -std=c++11 -stdlib=libc++ -Os solution-reverse.cpp
   (-Os optimiztion)
-  - real   0m0.578s
-  - user   0m0.531s
-  - sys    0m0.018s
+  - real   0m0.740s
+  - user   0m0.667s
+  - sys    0m0.037s
 */
 
 vector<int> read_nums(const string &filename) {
