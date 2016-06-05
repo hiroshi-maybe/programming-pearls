@@ -55,12 +55,12 @@ int main () {
     numsWork.push_back(inputNums[i]);
   }
 
-  for(int i=rotatePos; i< inputNums.size(); i+=1) {
+  for(int i=rotatePos; i< inputNums.size(); i+=1) {    
     inputNums[i-rotatePos] = inputNums[i];
   }
 
   for(int i=0; i< rotatePos; i+=1) {
-    inputNums[rotatePos+i] = numsWork[i];
+    inputNums[inputNums.size()-rotatePos+i] = numsWork[i];
   }
 
   write_nums("problem-b.output", inputNums);
