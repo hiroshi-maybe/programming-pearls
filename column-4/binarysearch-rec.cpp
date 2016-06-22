@@ -33,8 +33,8 @@ int indexOf(const vector<int> &data, int key, int start, int end) {
 
   int mid = data[midPos];
   if (mid == key) return midPos;
-  if (mid >  key && midPos < end)   return indexOf(data, key, start,  midPos);
-  if (mid <  key && midPos > start) return indexOf(data, key, midPos, end);
+  if (mid >  key) return indexOf(data, key, start,  midPos);
+  if (mid <  key) return indexOf(data, key, midPos+1,  end);
 
   return -1;
 }
