@@ -12,17 +12,17 @@
 using namespace std;
 
 /*
-  $ clang++ -std=c++11 -stdlib=libc++ max-sublist-rec.cpp
+  $ clang++ -std=c++11 -stdlib=libc++ max-sublist-bruteforce.cpp
   (No optimization option)
-  - real  0m0.012s
-  - user  0m0.002s
-  - sys   0m0.002s
+  - real   0m0.490s
+  - user   0m0.472s
+  - sys    0m0.006s
 
-  $ clang++ -std=c++11 -stdlib=libc++ -Os max-sublist-rec.cpp
+  $ clang++ -std=c++11 -stdlib=libc++ -Os max-sublist-bruteforce.cpp
   (-Os optimiztion)
-  - real  0m0.011s
-  - user  0m0.002s
-  - sys   0m0.002s
+  - real   0m0.090s
+  - user   0m0.077s
+  - sys    0m0.003s
 */
 
 vector<int> read_nums(const string &filename) {
@@ -38,23 +38,29 @@ vector<int> read_nums(const string &filename) {
   return vect;
 }
 
-#define MAX_ELEMENTS 1001
-
-int maxsublist(const vector<int> &data, int index, int currentMax) {
-  if (index >= data.size()) {
-    return currentMax;
+int sumForRange(const vector<int> &data, int start, int end) {
+  int sum = 0;
+  FOR(i, start, end+1) {
+    sum += data[i];
   }
 
-  int value = data[index];
-  int nextmax = max(currentMax + value, value);
+  return sum;
+}
+
+int maxsublist(const vector<int> &data) {
+  int res = 0;
+  REP(i, data.size()) {
+    FOR(j, i, data.size()) {
+      res = max(res, sumForRange(data, i, j));
+    }
+  }
   
-  int res = maxsublist(data, index+1, nextmax);
-  return max(res, currentMax);
+  return res;
 }
 
 int main () {
   auto data = read_nums("input.dat");
-  cout << maxsublist(data, 0, 0) << endl;
+  cout << maxsublist(data) << endl;
 
   return 0;
 }
