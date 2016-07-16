@@ -13,20 +13,14 @@
 using namespace std;
 
 /*
-  $ clang++ -std=c++11 -stdlib=libc++ max-sublist-dp.cpp
-  (No optimization option)
-  - real  0m0.011s
-  - user  0m0.002s
-  - sys   0m0.002s
-
-  $ clang++ -std=c++11 -stdlib=libc++ -Os max-sublist-dp.cpp
+  $ clang++ -std=c++11 -stdlib=libc++ -Os solution-8.2-bitCountTable-tree.cpp
   (-Os optimiztion)
-  - real  0m0.011s
-  - user  0m0.002s
-  - sys   0m0.002s
+  - real  0m0.181s
+  - user  0m0.091s
+  - sys   0m0.048s
 */
 
-#define EXPONENT 10
+#define EXPONENT 16
 
 int countOnBit(int n, int len, int countTable[]) {
   if (countTable[n] != -1) return countTable[n];
