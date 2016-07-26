@@ -51,11 +51,13 @@ void insertion_sort(vector<int> &data) {
   FOR(i, 1, data.size()) {
     // data[0..i-1] are sorted
     int j = i;
-    while (j >= 1 && data[j-1] > data[j]) {
+    int t = data[i];
+    while (j >= 1 && data[j-1] > t) {
       // data[0..j-1] are sorted. data[j] needs to be inserted.
-      int tmp = data[j]; data[j] = data[j-1]; data[j-1] = tmp;
+      data[j] = data[j-1];
       j -= 1;
     }
+    data[j] = t;
   }
 }
 
