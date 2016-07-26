@@ -14,15 +14,15 @@ using namespace std;
 /*
   $ clang++ -std=c++11 -stdlib=libc++ insertion-sort.cpp
   (No optimization option)
-  - real  0m0.012s
-  - user  0m0.002s
-  - sys   0m0.002s
+  - real  0m0.017s
+  - user  0m0.005s
+  - sys   0m0.003s
 
   $ clang++ -std=c++11 -stdlib=libc++ -Os insertion-sort.cpp
   (-Os optimiztion)
   - real  0m0.012s
   - user  0m0.002s
-  - sys   0m0.003s
+  - sys   0m0.002s
 */
 
 vector<int> read_nums(const string &filename) {
@@ -48,13 +48,13 @@ void write_nums(const string &filename, const vector<int> nums) {
 }
 
 void insertion_sort(vector<int> &data) {
-  REP(i, data.size()) {
+  FOR(i, 1, data.size()) {
     // data[0..i-1] are sorted
     int j = i;
-    while (j >= 1 && data[j] < data[j-1]) {
-      // data[0..j-1] are sorted. j>=1. data[j] should find a place in 0..j-1
-      int tmp = data[j]; data[j-1]=data[j]; data[j]=tmp; // swap
-      j -=1;
+    while (j >= 0 && data[j-1] > data[j]) {
+      // data[0..j-1] are sorted. data[j] needs to be inserted.
+      int tmp = data[j]; data[j] = data[j-1]; data[j-1] = tmp;
+      j -= 1;
     }
   }
 }
