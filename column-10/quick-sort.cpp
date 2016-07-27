@@ -51,17 +51,17 @@ int partition(vector<int> &data, int start, int end) {
   // data should not be empty
   int t = data[start];
 
-  int p = start+1;
+  int p = start;
   FOR (i, start+1, end) {
-    // x<t | x in data[start+1..p-1], data[p]>=t
+    // x<t | x in data[start+1..p], data[p+1]>=t
     if (data[i] < t) {
-      int tmp=data[i]; data[i]=data[p]; data[p]=tmp;
       p += 1;
+      int tmp=data[i]; data[i]=data[p]; data[p]=tmp;
     }
   }
 
-  int tmp=data[start]; data[start]=data[p-1]; data[p-1]=tmp;
-  return p-1;
+  int tmp=data[start]; data[start]=data[p]; data[p]=tmp;
+  return p;
 }
 
 void quick_sort(vector<int> &data, int start, int end) {
