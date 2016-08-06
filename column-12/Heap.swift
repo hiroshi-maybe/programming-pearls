@@ -28,10 +28,10 @@ struct Heap {
     let leftV = leftChild(idx) ?? Int.max
     let rightV = rightChild(idx) ?? Int.max
     
-    guard leftV < myvalue else { return }
-    
     let swappingIdx = leftV < rightV ? leftChildIdx(idx) : rightChildIdx(idx)
     let swappingV = min(leftV, rightV)
+    
+    guard swappingV < myvalue else { return }
     
     elements[swappingIdx] = myvalue
     elements[idx] = swappingV
